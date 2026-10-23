@@ -11,12 +11,20 @@ Skills that keep a codebase tidy.
 
 ## Usage
 
-- Write workflow
-    - `/housekeeping`: runs `/rounds`, and loops `/inspect` and fixing the issues.
-- Read-only workflow
-    - `/rounds`: identifies the messiest areas in the codebase.
-    - `/inspect`: reviews a specific area in the codebase.
-        - e.g., `/inspect git diff main...`
+- `/rounds`: identifies the messiest areas in the codebase.
+- `/inspect`: reviews your current changes, or a specific area in the codebase.
+- `/housekeeping`: runs `/rounds`, and loops `/inspect` and fixing the issues.
+
+All three take the same optional arguments: `[types=…] [<range>] [<paths>…]`.
+
+| You want | You type |
+|---|---|
+| Review your current changes | `/inspect` |
+| Review another branch, no checkout | `/inspect main...feature-x` |
+| Find the messy parts of your branch | `/rounds main...` |
+| Clean up only your branch | `/housekeeping main...` |
+| Same, but only in `src/api` | `/housekeeping main... src/api` |
+| Only some review types | `/inspect types=bugs,sense src/api` |
 
 
 ## Install

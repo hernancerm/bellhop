@@ -1,11 +1,11 @@
 ---
 name: inspect
 description: >-
-  Reviews the user's own code changes for bugs, duplication, design problems, ways to simplify, dead
-  code, bloated tests, and what a change of that kind usually needs but is missing, and gives
-  feedback without editing files. Use when the user asks to review, simplify, shorten, or clean up
-  their diff, changes, branch, or work before committing or opening a PR.
-argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] <diff command>"
+  Reviews the user's code changes (or given files) for bugs, duplication, design problems, ways to
+  simplify, dead code, bloated tests, and what a change of that kind usually needs but is missing,
+  and gives feedback without editing files. Use when the user asks to review, simplify, shorten, or
+  clean up their diff, changes, branch, or work before committing or opening a PR.
+argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...]"
 ---
 
 # Inspect
@@ -15,19 +15,33 @@ their files: describe each fix, and show code only when it is a few lines.
 
 ## Arguments
 
-The user may start with `types=` and a comma-separated list of review types (e.g.
-`types=simplify` or `types=bugs,reuse`), then the command that outputs the code. Run only the
-listed types. Without `types=`, run them all. An unknown type: ask instead of guessing.
+All optional, the same for the rounds, inspect, and housekeeping skills:
+
+- `types=` and a comma-separated list of review types (e.g. `types=simplify` or
+  `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`, `sense`. An
+  unknown type: ask instead of guessing.
+- A git range (e.g. `main...`, `HEAD~5..`, `main...feature-x`).
+- Paths (e.g. `src/api src/db/models.py`): files, directories, or a mix. Drop a leading `@` (a
+  Claude Code file mention).
+
+An argument that exists on disk is a path. Otherwise, one that `git rev-parse` accepts is a
+range.
+
+Here, `types=` means: run only the listed types. Without it, run them all.
 
 ## Commands
 
 Prefer plain commands, one at a time, to avoid permission prompts: no pipes, `&&`, redirects, or
 `$(...)`.
 
-## Get the diff
+## Get the code
 
-Run the git command the user gave (e.g. `git diff main...`), or another command they gave which
-outputs code, and review its output. If they gave none, ask for it instead of guessing.
+- A range: review `git diff <range> -- <paths>`.
+- Only paths: review those files whole, as they are now.
+- Neither: review the user's current changes, committed on this branch or not. Find the default
+  branch (`git symbolic-ref refs/remotes/origin/HEAD`, else `main` or `master`), run
+  `git merge-base HEAD <default>`, then review `git diff <that hash>`. Add new files from
+  `git status --short`, since the diff leaves them out. Nothing changed: say so and stop.
 
 ## Before any type
 
