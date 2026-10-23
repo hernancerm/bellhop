@@ -1,11 +1,11 @@
 ---
 name: rounds
 description: >-
-  Args: [since=<when>] [<revision range>]. Finds the dirtiest areas of the codebase (where a
-  review would likely find many problems) and says which review types to run there, without
-  reviewing or editing anything. Use when the user asks where the code is messiest, where to
-  focus a review, or what is turning into spaghetti.
-argument-hint: "[since=<when>] [<revision range>]"
+  Args: [<paths>...]. Finds the dirtiest areas of the codebase, or of the given files and
+  directories (where a review would likely find many problems), and says which review types to
+  run there, without reviewing or editing anything. Use when the user asks where the code is
+  messiest, where to focus a review, or what is turning into spaghetti.
+argument-hint: "[<paths>...]"
 ---
 
 # Rounds
@@ -25,22 +25,20 @@ allowed one can do the job, and say why.
 
 ## Arguments
 
-Both optional:
-
-- `since=<when>` (e.g. `since=2.months`): the churn window. Default: `6.months`.
-- A revision range (e.g. `main~20..main`): only look at files changed in it.
+Optional paths (e.g. `src/api src/db/models.py`): files, directories, or a mix. Only look at
+those, by adding `-- <paths>` to every `git grep` and `git log` below. Drop a leading `@` (a
+Claude Code file mention).
 
 ## Pick the scope
 
 1. Lines per file: `git grep -c ''`. Leave out lock, generated, vendored, and data files.
-2. Churn: count how often each path shows up in `git log --since=<when> --format= --name-only`.
+2. Churn: count how often each path shows up in `git log --since=6.months --format= --name-only`.
 3. Mode:
-   - A revision range was given: **range mode**, only the files in `git diff --stat <range>`.
-   - Up to 10k lines: **full mode**, the whole codebase.
+   - Up to 10k lines: **full mode**, the whole codebase (or all the given paths).
    - Past that (about 100k tokens), the code stops fitting in context: **hotspot mode**, the top
      20 or so files by churn times lines. Dirt piles up where people keep editing.
-4. Say the mode and why in one line. In full mode, add the lines as a percentage of the 10k
-   budget (e.g. "Full mode: 7,300 lines, 73% of the budget").
+4. Say the mode, the paths if any, and why in one line. In full mode, add the lines as a
+   percentage of the 10k budget (e.g. "Full mode: 7,300 lines, 73% of the budget").
 
 ## Find the smells
 
@@ -64,7 +62,6 @@ For each:
 - Why it smells, naming the signals (e.g. "800 lines, changed in 14 of the last 30 commits, 3
   near-copies of the date parsing"). Mark it a guess when it rests on one weak signal.
 - A command to paste that runs the inspect skill with `types=<types> <command>`, with types
-  from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`. The command is
-  `git diff <range> -- <paths>` in range mode, otherwise `cat <files>`.
+  from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`. The command is `cat <files>`.
 
 Nothing stands out: say so. Do not invent areas to fill the report.
