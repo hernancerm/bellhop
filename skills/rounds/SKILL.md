@@ -51,7 +51,7 @@ smell too. Skim, and stop at a gut feeling instead of chasing each smell down.
 
 ## Report
 
-At most 3 areas (a file, directory, or files that smell for the same reason), dirtiest first.
+At most 5 areas (a file, directory, or files that smell for the same reason), dirtiest first.
 For each:
 
 - The paths, or `file:line` for one spot.
