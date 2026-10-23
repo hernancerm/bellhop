@@ -1,6 +1,6 @@
 # bellhop
 
-Skills for Claude Code and Antigravity CLI (agy) that keep a codebase tidy.
+Claude Code skills that keep a codebase tidy.
 
 | Skill | What it does | Edits files |
 |---|---|---|
@@ -12,21 +12,12 @@ Skills for Claude Code and Antigravity CLI (agy) that keep a codebase tidy.
 
 ## Install
 
-Claude Code:
-
 ```
 /plugin marketplace add hernancerm/bellhop
 /plugin install bellhop@bellhop
 ```
 
 Skills are then called as `/bellhop:<skill>`, e.g. `/bellhop:inspect git diff main...`.
-
-agy:
-
-```
-git clone https://github.com/hernancerm/bellhop
-agy plugin install bellhop
-```
 
 ## Develop
 
