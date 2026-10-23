@@ -1,10 +1,10 @@
 ---
 name: rounds
 description: >-
-  Args: [<paths>...]. Finds the dirtiest areas of the codebase, or of the given files and
-  directories (where a review would likely find many problems), and says which review types to
-  run there, without reviewing or editing anything. Use when the user asks where the code is
-  messiest, where to focus a review, or what is turning into spaghetti.
+  Finds the dirtiest areas of the codebase, or of the given files and directories (where a review
+  would likely find many problems), and says which review types to run there, without reviewing or
+  editing anything. Use when the user asks where the code is messiest, where to focus a review, or
+  what is turning into spaghetti.
 argument-hint: "[<paths>...]"
 ---
 

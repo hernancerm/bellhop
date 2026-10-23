@@ -1,12 +1,11 @@
 ---
 name: inspect
 description: >-
-  Args: [types=bugs,reuse,design,simplify,dead,tests,blast] <diff command>. Reviews the user's
-  own code changes for bugs, duplication, design problems, ways to simplify, dead code, bloated
-  tests, and what they break outside the diff, and gives feedback without editing files. Use
-  when the user asks to review, simplify, shorten, or clean up their diff, changes, branch, or
-  work before committing or opening a PR, or asks for the blast radius of a change or what it
-  could break.
+  Reviews the user's own code changes for bugs, duplication, design problems, ways to simplify, dead
+  code, bloated tests, and what they break outside the diff, and gives feedback without editing
+  files. Use when the user asks to review, simplify, shorten, or clean up their diff, changes,
+  branch, or work before committing or opening a PR, or asks for the blast radius of a change or
+  what it could break.
 argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,blast] <diff command>"
 ---
 

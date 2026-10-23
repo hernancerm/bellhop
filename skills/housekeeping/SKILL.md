@@ -1,11 +1,10 @@
 ---
 name: housekeeping
 description: >-
-  Args: [types=bugs,reuse,design,simplify,dead,tests,blast] [<command>]. Cleans up the codebase
-  in a loop: finds the dirtiest areas with the rounds skill (or takes the one area the user
-  gives), reviews each with the inspect skill, fixes the findings, and reviews again until clean.
-  Edits files and commits. Use when the user asks to clean up, tidy, or do housekeeping on the
-  codebase or an area of it.
+  Cleans up the codebase in a loop: finds the dirtiest areas with the rounds skill (or takes the one
+  area the user gives), reviews each with the inspect skill, fixes the findings, and reviews again
+  until clean. Edits files and commits. Use when the user asks to clean up, tidy, or do housekeeping
+  on the codebase or an area of it.
 argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,blast] [<command>]"
 ---
 

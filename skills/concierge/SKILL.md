@@ -1,11 +1,11 @@
 ---
 name: concierge
 description: >-
-  Args: [<vision text or file>]. Scans the whole repo at a high level and recommends the few
-  libraries, tools, and helpers that would pay off most across it (or across one layer): ones
-  that simplify repeated code and ones that open new opportunities, without editing files. Use
-  when the user asks what to add to a young codebase, which amenities or tooling it is missing,
-  or what would give the best value for the effort.
+  Scans the whole repo at a high level and recommends the few libraries, tools, and helpers that
+  would pay off most across it (or across one layer): ones that simplify repeated code and ones that
+  open new opportunities, without editing files. Use when the user asks what to add to a young
+  codebase, which amenities or tooling it is missing, or what would give the best value for the
+  effort.
 argument-hint: "[<vision text or file>]"
 ---
 
