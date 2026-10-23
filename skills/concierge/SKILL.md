@@ -19,12 +19,8 @@ decides and installs, so never edit files or install anything.
 
 ## Commands
 
-In Antigravity only (skip this section in Claude Code): strongly prefer commands that the user's
-auto-approve whitelist allows. Read the whitelist once at the start:
-`cat ~/dev/repos/agy-auto-mode/policy.json`. No such file: skip this section. Run one plain
-command at a time: any of `` ;|&><$`()\ `` or a newline makes the command need manual approval,
-so no pipes, `&&`, redirects, or `$(...)`. Use a command outside the whitelist only when no
-allowed one can do the job, and say why.
+Prefer plain, read-only commands (`git`, `cat`, `ls`, `grep`), one at a time, to avoid permission
+prompts: no pipes, `&&`, redirects, or `$(...)`.
 
 ## Arguments
 
