@@ -26,12 +26,15 @@ Automated workflow:
 All three skills take the same optional arguments:
 
 1. `[types=…]`: bugs, reuse, design, simplify, dead, tests, sense
-2. `[<range>]`: a git range (e.g., `main...`, `main...feature-x`)
-3. `[<paths>…]`: file or dir paths, optionally prefixed with `@`
+2. `[context=…]`: comma-separated file or dir paths with background context (specs, plans, etc.)
+3. `[<range>]`: a git range (e.g., `main...`, `main...feature-x`)
+4. `[<paths>…]`: file or dir paths to review, optionally prefixed with `@`
+5. `[<notes>]`: free-text notes about scope or expected behavior
 
 | You want | You type |
 |---|---|
 | Review your current changes | `/inspect` |
+| Review with plan docs and a note | `/inspect context=.temp/plan "Increment 1 only"` |
 | Find the messy parts of your branch | `/rounds main...` |
 | Review another branch, no checkout | `/inspect main...feature-x` |
 | Only some review types on `src/api.ts` | `/inspect types=bugs,sense src/api.ts` |
