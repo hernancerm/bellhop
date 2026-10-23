@@ -5,7 +5,7 @@ description: >-
   area the user gives), reviews each with the inspect skill, fixes the findings, and reviews again
   until clean. Edits files and commits. Use when the user asks to clean up, tidy, or do housekeeping
   on the codebase or an area of it.
-argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,blast] [<command>]"
+argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<command>]"
 ---
 
 # Housekeeping

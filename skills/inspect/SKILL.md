@@ -2,11 +2,10 @@
 name: inspect
 description: >-
   Reviews the user's own code changes for bugs, duplication, design problems, ways to simplify, dead
-  code, bloated tests, and what they break outside the diff, and gives feedback without editing
-  files. Use when the user asks to review, simplify, shorten, or clean up their diff, changes,
-  branch, or work before committing or opening a PR, or asks for the blast radius of a change or
-  what it could break.
-argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,blast] <diff command>"
+  code, bloated tests, and what a change of that kind usually needs but is missing, and gives
+  feedback without editing files. Use when the user asks to review, simplify, shorten, or clean up
+  their diff, changes, branch, or work before committing or opening a PR.
+argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] <diff command>"
 ---
 
 # Inspect
@@ -18,9 +17,7 @@ their files: describe each fix, and show code only when it is a few lines.
 
 The user may start with `types=` and a comma-separated list of review types (e.g.
 `types=simplify` or `types=bugs,reuse`), then the command that outputs the code. Run only the
-listed types. Without `types=`, run `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`.
-`blast` runs only when listed, since it runs code and costs the most. When the user asks what a
-change could break, run `types=blast`. An unknown type: ask instead of guessing.
+listed types. Without `types=`, run them all. An unknown type: ask instead of guessing.
 
 ## Commands
 
@@ -44,7 +41,7 @@ outputs code, and review its output. If they gave none, ask for it instead of gu
 ### bugs
 
 Issues the diff causes within itself: missed cases (null, empty, errors, concurrency), missing
-tests, and breaks of the repo's own rules. What it breaks outside the diff belongs to `blast`.
+tests, and breaks of the repo's own rules. What the change leaves out entirely belongs to `sense`.
 
 ### reuse
 
@@ -104,34 +101,18 @@ it would catch. Look for:
 
 Never cut a test that catches a bug no other test catches.
 
-### blast
+### sense
 
-Issues the diff causes outside itself. Listing callers is not the job: grep does that in a
-second. The job is the breakage grep won't show. Adapted from poteto's pstack (MIT).
+What a change of this kind usually needs but the diff leaves out. Ask what an experienced
+engineer would expect from it, e.g.:
 
-A writeup that sounds right reads as convincing whether or not it is true. For each fact the
-change's safety depends on, get it as far down this list as is cheap, and say where it stopped:
+- An HTTP client with no connect or read timeout.
+- A retry with no backoff or limit.
+- A new endpoint with no auth check or input validation.
+- A cache with no expiry or size limit.
 
-1. You said so. Worthless on its own.
-2. You pointed at the line: a real `file:line`, or the library's own source.
-3. You walked the failure step by step and showed it can't be reached.
-4. You ran it: a script or test that calls the real code and fails loud if you're wrong.
-5. You reproduced it in the running app or tool.
-
-Steps:
-
-1. Read what the change now does differently, including the part the diff doesn't spell out.
-2. Find the one fact it is safe because of. Most risky-looking changes are safe because of a
-   single fact, like "this call only drops cache entries that are already dead". If it holds,
-   most risks clear at once. Spend your time here, not on a long list of maybes.
-3. Look where grep stops: the source of the library you call (at its pinned version, with any
-   local patch), when things run (startup order, async, teardown), and what a symbol search
-   misses (config keys, env vars, file formats, another language or tool reading the same data,
-   code a few hops downstream).
-4. Keep only risks with a real chance of happening and a real cost if they do. A search that
-   finds nothing is still an answer. Never make up a caller or an API.
-5. Prove the one fact. Write a script or test that runs the real code, outside the repo (e.g. in
-   `~/dev/temp`), run it, and paste what happened.
+Point at how the repo or library already does it, if it does. Skip what the repo leaves out on
+purpose (e.g. a comment or its rules file says so).
 
 ## Report
 
@@ -140,10 +121,7 @@ Steps:
 - For each: the type in brackets (e.g. `[bugs]`), `file:line`, and the problem in one sentence.
   Then, for bugs, a concrete input or state that triggers it; for design, the change that would
   hurt; for simplify, why the result is simpler; for dead, what you searched to show nothing
-  uses it; for tests, what value is kept and about how many lines go; for blast, how it breaks,
-  how likely and how bad, and how to check.
-- With `blast`, before the findings: the one fact the change is safe because of, the level above
-  you got it to, and the proof with the path to your script. If you couldn't prove it, write
-  unproven. After the findings: what you checked and cleared, and why it's fine.
+  uses it; for tests, what value is kept and about how many lines go; for sense, what goes wrong
+  without it.
 - Mark a finding as a guess when you could not confirm it from the code.
 - No findings: say so plainly. Do not invent issues to fill the report.

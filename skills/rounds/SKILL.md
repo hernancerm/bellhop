@@ -58,6 +58,7 @@ For each:
 - Why it smells, naming the signals (e.g. "800 lines, changed in 14 of the last 30 commits, 3
   near-copies of the date parsing"). Mark it a guess when it rests on one weak signal.
 - A command to paste that runs the inspect skill with `types=<types> <command>`, with types
-  from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`. The command is `cat <files>`.
+  from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`, `sense`. The command is
+  `cat <files>`.
 
 Nothing stands out: say so. Do not invent areas to fill the report.
