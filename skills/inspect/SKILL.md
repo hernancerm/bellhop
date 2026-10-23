@@ -5,7 +5,7 @@ description: >-
   simplify, dead code, bloated tests, and what a change of that kind usually needs but is missing,
   and gives feedback without editing files. Use when the user asks to review, simplify, shorten, or
   clean up their diff, changes, branch, or work before committing or opening a PR.
-argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...]"
+argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [context=<paths>] [<range>] [<paths>...] [<notes>]"
 ---
 
 # Inspect
@@ -20,12 +20,17 @@ All optional, the same for the rounds, inspect, and housekeeping skills:
 - `types=` and a comma-separated list of review types (e.g. `types=simplify` or
   `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`, `sense`. An
   unknown type: ask instead of guessing.
+- `context=` and a comma-separated list of files or directories (e.g. `context=.temp/plan` or
+  `context=docs/spec.md,docs/notes.md`) that explain the goal, scope, or intentional tradeoffs.
+  Drop a leading `@`. These are background reading, not code to review.
 - A git range (e.g. `main...`, `HEAD~5..`, `main...feature-x`).
 - Paths (e.g. `src/api src/db/models.py`): files, directories, or a mix. Drop a leading `@` (a
   Claude Code file mention).
+- Free-text notes: any remaining words that are none of the above (e.g. `"Increment 1 only; 404
+  masking is intentional"`).
 
 An argument that exists on disk is a path. Otherwise, one that `git rev-parse` accepts is a
-range.
+range. Anything else is a free-text note.
 
 Here, `types=` means: run only the listed types. Without it, run them all.
 
@@ -45,6 +50,8 @@ Prefer plain commands, one at a time, to avoid permission prompts: no pipes, `&&
 
 ## Before any type
 
+- Read the `context=` files and free-text notes if given. Skip findings that the context marks as
+  intentional, required for parity, or out of scope for the current step.
 - Read the surrounding code, not just the changed lines: callers, tests, and the rules file
   (`AGENTS.md`, `GEMINI.md`, `CLAUDE.md`) if the repo has one. A suggestion must fit how the repo
   already does things.
