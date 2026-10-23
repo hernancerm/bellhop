@@ -11,20 +11,31 @@ Skills that keep a codebase tidy.
 
 ## Usage
 
-- `/rounds`: identifies the messiest areas in the codebase.
-- `/inspect`: reviews your current changes, or a specific area in the codebase.
-- `/housekeeping`: runs `/rounds`, and loops `/inspect` and fixing the issues.
+Human-in-the-loop workflow:
 
-All three take the same optional arguments: `[types=…] [<range>] [<paths>…]`.
+1. `/rounds`: identifies the messiest areas in the codebase.
+    - The output of this skill contains recommended `/inspect` invocations.
+2. `/inspect`: reviews your current changes, or a specific area in the codebase.
+    - You can then ask the agent to resolve the findings.
+
+Automated workflow:
+
+1. `/housekeeping`: runs `/rounds`, and loops on `/inspect`-fix-commit.
+    - This is the automated way to run `/rounds` and `/inspect`.
+
+All three skills take the same optional arguments:
+
+1. `[types=…]`: bugs, reuse, design, simplify, dead, tests, sense
+2. `[<range>]`: a git range (e.g., `main...`, `main...feature-x`)
+3. `[<paths>…]`: file or dir paths, optionally prefixed with `@`
 
 | You want | You type |
 |---|---|
 | Review your current changes | `/inspect` |
-| Review another branch, no checkout | `/inspect main...feature-x` |
 | Find the messy parts of your branch | `/rounds main...` |
+| Review another branch, no checkout | `/inspect main...feature-x` |
+| Only some review types on `src/api.ts` | `/inspect types=bugs,sense src/api.ts` |
 | Clean up only your branch | `/housekeeping main...` |
-| Same, but only in `src/api` | `/housekeeping main... src/api` |
-| Only some review types | `/inspect types=bugs,sense src/api` |
 
 
 ## Install
