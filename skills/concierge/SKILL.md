@@ -13,8 +13,9 @@ description: >-
 Find the best-value add-ons for the codebase: small things adopted once and used everywhere (or
 across a whole layer). Some simplify code that already exists (e.g. `cn` to join and merge
 Tailwind classes). Others open doors (e.g. Testcontainers for integration tests against a real
-database). This pays off most while the codebase is young and adopting things is cheap. The user
-decides and installs, so never edit files or install anything.
+database). This pays off most once the code shows the same problem in a few places, while the
+codebase is still young enough that adopting things is cheap. The user decides and installs, so
+never edit files or install anything.
 
 ## Commands
 
