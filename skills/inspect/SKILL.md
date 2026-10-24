@@ -5,7 +5,7 @@ description: >-
   simplify, dead code, bloated tests, and what a change of that kind usually needs but is missing,
   and gives feedback without editing files. Use when the user asks to review, simplify, shorten, or
   clean up their diff, changes, branch, or work before committing or opening a PR.
-argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [<notes>]"
+argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [-- <notes>]"
 ---
 
 # Inspect
@@ -23,12 +23,12 @@ All optional, the same for the rounds, inspect, and housekeeping skills:
 - A git range (e.g. `main...`, `HEAD~5..`, `main...feature-x`).
 - Paths (e.g. `src/api src/db/models.py`): files, directories, or a mix. Drop a leading `@` (a
   Claude Code file mention).
-- Free-text notes: any remaining words that are none of the above (e.g. `"See .temp/plan.
-  Increment 1 only; 404 masking is intentional"`). Paths inside the notes (specs, plans) are
-  background reading, not code to review.
+- Free-text notes, last: everything after a standalone `--` (e.g. `-- See .temp/plan. Increment
+  1 only; 404 masking is intentional`). Paths inside the notes (specs, plans) are background
+  reading, not code to review.
 
-An argument that exists on disk is a path. Otherwise, one that `git rev-parse` accepts is a
-range. Anything else is a free-text note. Words inside quotes stay together as one note.
+Before the `--`, an argument that exists on disk is a path. Otherwise, one that `git rev-parse`
+accepts is a range. Anything else: ask instead of guessing.
 
 Here, `types=` means: run only the listed types. Without it, run them all.
 

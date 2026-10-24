@@ -5,7 +5,7 @@ description: >-
   with the rounds skill, reviews each with the inspect skill, fixes the findings, and reviews again
   until clean. Edits files and commits. Use when the user asks to clean up, tidy, or do housekeeping
   on the codebase or an area of it.
-argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [<notes>]"
+argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [-- <notes>]"
 ---
 
 # Housekeeping
@@ -28,12 +28,12 @@ All optional, the same for the rounds, inspect, and housekeeping skills:
 - A git range (e.g. `main...`, `HEAD~5..`, `main...feature-x`).
 - Paths (e.g. `src/api src/db/models.py`): files, directories, or a mix. Drop a leading `@` (a
   Claude Code file mention).
-- Free-text notes: any remaining words that are none of the above (e.g. `"See .temp/plan.
-  Increment 1 only; 404 masking is intentional"`). Paths inside the notes (specs, plans) are
-  background reading, not code to review.
+- Free-text notes, last: everything after a standalone `--` (e.g. `-- See .temp/plan. Increment
+  1 only; 404 masking is intentional`). Paths inside the notes (specs, plans) are background
+  reading, not code to review.
 
-An argument that exists on disk is a path. Otherwise, one that `git rev-parse` accepts is a
-range. Anything else is a free-text note. Words inside quotes stay together as one note.
+Before the `--`, an argument that exists on disk is a path. Otherwise, one that `git rev-parse`
+accepts is a range. Anything else: ask instead of guessing.
 
 Pass all of them on to the rounds and inspect skills. Without `types=`, each area gets the types
 the rounds skill suggests for it.
