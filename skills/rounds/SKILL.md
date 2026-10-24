@@ -5,7 +5,7 @@ description: >-
   would likely find many problems), and says which review types to run there, without reviewing or
   editing anything. Use when the user asks where the code is messiest, where to focus a review, or
   what is turning into spaghetti.
-argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [context=<paths>] [<range>] [<paths>...] [<notes>]"
+argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [<notes>]"
 ---
 
 # Rounds
@@ -26,17 +26,15 @@ All optional, the same for the rounds, inspect, and housekeeping skills:
 - `types=` and a comma-separated list of review types (e.g. `types=simplify` or
   `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`, `sense`. An
   unknown type: ask instead of guessing.
-- `context=` and a comma-separated list of files or directories (e.g. `context=.temp/plan` or
-  `context=docs/spec.md,docs/notes.md`) that explain the goal, scope, or intentional tradeoffs.
-  Drop a leading `@`. These are background reading, not code to review.
 - A git range (e.g. `main...`, `HEAD~5..`, `main...feature-x`).
 - Paths (e.g. `src/api src/db/models.py`): files, directories, or a mix. Drop a leading `@` (a
   Claude Code file mention).
-- Free-text notes: any remaining words that are none of the above (e.g. `"Increment 1 only; 404
-  masking is intentional"`).
+- Free-text notes: any remaining words that are none of the above (e.g. `"See .temp/plan.
+  Increment 1 only; 404 masking is intentional"`). Paths inside the notes (specs, plans) are
+  background reading, not code to review.
 
 An argument that exists on disk is a path. Otherwise, one that `git rev-parse` accepts is a
-range. Anything else is a free-text note.
+range. Anything else is a free-text note. Words inside quotes stay together as one note.
 
 Here, `types=` means: only point at areas where those types would find something, and suggest
 only those types.
@@ -57,7 +55,7 @@ only those types.
 
 ## Find the smells
 
-Read the `context=` files and free-text notes if given, and skip smells they mark as intentional
+Read the free-text notes and any files they point to, and skip smells they mark as intentional
 or out of scope. Read the repo's rules file (`AGENTS.md`, `GEMINI.md`, `CLAUDE.md`) if any:
 breaking it is a smell too. Skim, and stop at a gut feeling instead of chasing each smell down.
 
@@ -77,7 +75,7 @@ For each:
 - The paths, or `file:line` for one spot.
 - Why it smells, naming the signals (e.g. "800 lines, changed in 14 of the last 30 commits, 3
   near-copies of the date parsing"). Mark it a guess when it rests on one weak signal.
-- The arguments to paste into the inspect skill: `types=<types>`, `context=<paths>` if given, the
-  range if one was given, the area's paths, and the free-text notes if any.
+- The arguments to paste into the inspect skill: `types=<types>`, the range if one
+  was given, the area's paths, and the free-text notes if any.
 
 Nothing stands out: say so. Do not invent areas to fill the report.

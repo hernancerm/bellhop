@@ -9,12 +9,10 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- `context=` argument for `/rounds`, `/inspect`, and `/housekeeping`: files or dirs with
-  background (specs, plans) that explain the goal, scope, or intentional tradeoffs.
-- Free-text notes argument for the same skills: any leftover words about scope or expected
-  behavior.
-- `/rounds` and `/inspect` skip findings that the context or notes mark as intentional or out of
-  scope.
+- Free-text notes argument for `/rounds`, `/inspect`, and `/housekeeping`: any leftover words
+  about scope or expected behavior. Paths in them (specs, plans) are read as background, not
+  reviewed.
+- `/rounds` and `/inspect` skip findings that the notes mark as intentional or out of scope.
 
 ## [0.1.0] - 2026-10-22
 

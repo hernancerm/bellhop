@@ -5,7 +5,7 @@ description: >-
   with the rounds skill, reviews each with the inspect skill, fixes the findings, and reviews again
   until clean. Edits files and commits. Use when the user asks to clean up, tidy, or do housekeeping
   on the codebase or an area of it.
-argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [context=<paths>] [<range>] [<paths>...] [<notes>]"
+argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [<notes>]"
 ---
 
 # Housekeeping
@@ -25,17 +25,15 @@ All optional, the same for the rounds, inspect, and housekeeping skills:
 - `types=` and a comma-separated list of review types (e.g. `types=simplify` or
   `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`, `sense`. An
   unknown type: ask instead of guessing.
-- `context=` and a comma-separated list of files or directories (e.g. `context=.temp/plan` or
-  `context=docs/spec.md,docs/notes.md`) that explain the goal, scope, or intentional tradeoffs.
-  Drop a leading `@`. These are background reading, not code to review.
 - A git range (e.g. `main...`, `HEAD~5..`, `main...feature-x`).
 - Paths (e.g. `src/api src/db/models.py`): files, directories, or a mix. Drop a leading `@` (a
   Claude Code file mention).
-- Free-text notes: any remaining words that are none of the above (e.g. `"Increment 1 only; 404
-  masking is intentional"`).
+- Free-text notes: any remaining words that are none of the above (e.g. `"See .temp/plan.
+  Increment 1 only; 404 masking is intentional"`). Paths inside the notes (specs, plans) are
+  background reading, not code to review.
 
 An argument that exists on disk is a path. Otherwise, one that `git rev-parse` accepts is a
-range. Anything else is a free-text note.
+range. Anything else is a free-text note. Words inside quotes stay together as one note.
 
 Pass all of them on to the rounds and inspect skills. Without `types=`, each area gets the types
 the rounds skill suggests for it.
