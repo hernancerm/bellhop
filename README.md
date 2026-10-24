@@ -28,13 +28,13 @@ All three skills take the same optional arguments:
 1. `[types=…]`: bugs, reuse, design, simplify, dead, tests, sense
 2. `[<range>]`: a git range (e.g., `main...`, `main...feature-x`)
 3. `[<paths>…]`: file or dir paths to review, optionally prefixed with `@`
-4. `[<notes>]`: free-text notes about scope or expected behavior, in quotes. Paths in them
-   (specs, plans) are background reading, not code to review.
+4. `[-- <notes>]`: free-text notes about scope or expected behavior, last. Everything after `--`
+   is the note. Paths in them (specs, plans) are background reading, not code to review.
 
 | You want | You type |
 |---|---|
 | Review your current changes | `/inspect` |
-| Review with plan docs and a note | `/inspect "See .temp/plan. Increment 1 only"` |
+| Review with plan docs and a note | `/inspect -- See .temp/plan. Increment 1 only` |
 | Find the messy parts of your branch | `/rounds main...` |
 | Review another branch, no checkout | `/inspect main...feature-x` |
 | Only some review types on `src/api.ts` | `/inspect types=bugs,sense src/api.ts` |

@@ -5,7 +5,7 @@ description: >-
   would likely find many problems), and says which review types to run there, without reviewing or
   editing anything. Use when the user asks where the code is messiest, where to focus a review, or
   what is turning into spaghetti.
-argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [<notes>]"
+argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [-- <notes>]"
 ---
 
 # Rounds
@@ -29,12 +29,12 @@ All optional, the same for the rounds, inspect, and housekeeping skills:
 - A git range (e.g. `main...`, `HEAD~5..`, `main...feature-x`).
 - Paths (e.g. `src/api src/db/models.py`): files, directories, or a mix. Drop a leading `@` (a
   Claude Code file mention).
-- Free-text notes: any remaining words that are none of the above (e.g. `"See .temp/plan.
-  Increment 1 only; 404 masking is intentional"`). Paths inside the notes (specs, plans) are
-  background reading, not code to review.
+- Free-text notes, last: everything after a standalone `--` (e.g. `-- See .temp/plan. Increment
+  1 only; 404 masking is intentional`). Paths inside the notes (specs, plans) are background
+  reading, not code to review.
 
-An argument that exists on disk is a path. Otherwise, one that `git rev-parse` accepts is a
-range. Anything else is a free-text note. Words inside quotes stay together as one note.
+Before the `--`, an argument that exists on disk is a path. Otherwise, one that `git rev-parse`
+accepts is a range. Anything else: ask instead of guessing.
 
 Here, `types=` means: only point at areas where those types would find something, and suggest
 only those types.
@@ -76,6 +76,6 @@ For each:
 - Why it smells, naming the signals (e.g. "800 lines, changed in 14 of the last 30 commits, 3
   near-copies of the date parsing"). Mark it a guess when it rests on one weak signal.
 - The arguments to paste into the inspect skill: `types=<types>`, the range if one
-  was given, the area's paths, and the free-text notes if any.
+  was given, the area's paths, and `-- <notes>` last if any.
 
 Nothing stands out: say so. Do not invent areas to fill the report.
