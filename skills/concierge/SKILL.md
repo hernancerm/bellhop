@@ -6,7 +6,6 @@ description: >-
   open new opportunities, without editing files. Use when the user asks what to add to a young
   codebase, which amenities or tooling it is missing, or what would give the best value for the
   effort.
-argument-hint: "[<vision text or file>]"
 ---
 
 # Concierge
@@ -21,12 +20,6 @@ decides and installs, so never edit files or install anything.
 
 Prefer plain, read-only commands (`git`, `cat`, `ls`, `grep`), one at a time, to avoid permission
 prompts: no pipes, `&&`, redirects, or `$(...)`.
-
-## Arguments
-
-Optional: a description of the project vision, as text or a path to a file. When given, it
-steers the "opens doors" picks toward where the project is going. Without it, infer the
-direction from the README and the code, and say that you did.
 
 ## Map the repo
 
@@ -44,9 +37,10 @@ Stay high level: learn the shape, not every line.
 - **Simplifies:** look for the same small problem solved by hand in several places: string
   joining, validation, date handling, fetch and error wrapping, env parsing, logging, test setup.
   Each spot is evidence. One spot is not a pattern.
-- **Opens doors:** look for what the stack makes hard or leaves untested or unseen: no
-  integration tests, no type-safe boundary between layers, no migrations, no observability, no
-  fast feedback in CI. Tie each pick to the vision when there is one.
+- **Opens doors:** look for what the code already does but the stack leaves hard, untested, or
+  unseen: database queries with no integration tests, untyped calls between layers, schema
+  changes made by hand, no observability, slow CI feedback. Point at the code that suffers today,
+  never at a future the project might grow into.
 
 Rules for a pick:
 
@@ -64,7 +58,7 @@ For each:
 
 - Name, and the layer it is for (or "whole repo").
 - What it does, in one line.
-- The evidence: `file:line` spots it would clean up, or the gap or vision point it serves.
+- The evidence: `file:line` spots it would clean up, or that show the gap it fills.
 - The cost, in one line.
 
 Nothing worth adding: say so. Do not invent picks to fill the report.
