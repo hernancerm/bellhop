@@ -14,6 +14,15 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   background, not reviewed.
 - `/rounds` and `/inspect` skip findings that the notes mark as intentional or out of scope.
 
+### Changed
+
+- `/concierge` only recommends picks backed by `file:line` evidence of a problem the code has
+  today, not by where the project might go.
+
+### Removed
+
+- `/concierge` vision argument.
+
 ## [0.1.0] - 2026-10-22
 
 ### Added
