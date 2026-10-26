@@ -1,6 +1,6 @@
 {
   "name": "upkeep",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Skills that keep a codebase tidy: find the messiest areas, review changes, clean up in a loop, and suggest tooling worth adding.",
   "author": {
     "name": "Hernán Cervera"
