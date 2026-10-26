@@ -15,7 +15,7 @@ their files: describe each fix, and show code only when it is a few lines.
 
 ## Arguments
 
-All optional, the same for the rounds, inspect, and housekeeping skills:
+All optional, the same for the hotspots, inspect, and cleanup skills:
 
 - `types=` and a comma-separated list of review types (e.g. `types=simplify` or
   `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`, `sense`. An

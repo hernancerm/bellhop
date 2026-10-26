@@ -1,17 +1,17 @@
 ---
-name: housekeeping
+name: cleanup
 description: >-
   Cleans up the codebase, a branch, a range, or a set of paths in a loop: finds the dirtiest areas
-  with the rounds skill, reviews each with the inspect skill, fixes the findings, and reviews again
+  with the hotspots skill, reviews each with the inspect skill, fixes the findings, and reviews again
   until clean. Edits files and commits. Use when the user asks to clean up, tidy, or do housekeeping
   on the codebase or an area of it.
 argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [-- <notes>]"
 ---
 
-# Housekeeping
+# Cleanup
 
 Review and fix the dirtiest areas of the code, one at a time, until each review comes back
-clean. Unlike the rounds and inspect skills, this skill edits files and commits each fix.
+clean. Unlike the hotspots and inspect skills, this skill edits files and commits each fix.
 
 ## Commands
 
@@ -20,7 +20,7 @@ Prefer plain commands, one at a time, to avoid permission prompts: no pipes, `&&
 
 ## Arguments
 
-All optional, the same for the rounds, inspect, and housekeeping skills:
+All optional, the same for the hotspots, inspect, and cleanup skills:
 
 - `types=` and a comma-separated list of review types (e.g. `types=simplify` or
   `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`, `sense`. An
@@ -35,8 +35,8 @@ All optional, the same for the rounds, inspect, and housekeeping skills:
 Before the `--`, an argument that exists on disk is a path. Otherwise, one that `git rev-parse`
 accepts is a range. Anything else: ask instead of guessing.
 
-Pass all of them on to the rounds and inspect skills. Without `types=`, each area gets the types
-the rounds skill suggests for it.
+Pass all of them on to the hotspots and inspect skills. Without `types=`, each area gets the types
+the hotspots skill suggests for it.
 
 ## Before you start
 
@@ -51,7 +51,7 @@ the rounds skill suggests for it.
 
 ## Pick the areas
 
-Run the rounds skill once with the arguments and take its areas, dirtiest first. Do not run it
+Run the hotspots skill once with the arguments and take its areas, dirtiest first. Do not run it
 again during the loop: it always finds something, so the loop would never end. It found nothing:
 say so and stop.
 

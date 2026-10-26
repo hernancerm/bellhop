@@ -1,10 +1,10 @@
 {
-  "name": "bellhop",
+  "name": "upkeep",
   "version": "0.2.0",
   "description": "Skills that keep a codebase tidy: find the messiest areas, review changes, clean up in a loop, and suggest tooling worth adding.",
   "author": {
     "name": "Hernán Cervera"
   },
-  "repository": "https://github.com/hernancerm/bellhop",
+  "repository": "https://github.com/hernancerm/upkeep",
   "license": "MIT"
 }
