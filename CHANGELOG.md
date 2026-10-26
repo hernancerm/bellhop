@@ -7,6 +7,12 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Renamed the plugin from `bellhop` to `upkeep`.
+- Renamed skills: `/rounds` to `/hotspots`, `/housekeeping` to `/cleanup`, `/concierge` to
+  `/adopt`.
+
 ## [0.2.0] - 2026-10-24
 
 ### Added
@@ -39,6 +45,6 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Claude Code plugin marketplace install.
 - MIT license.
 
-[Unreleased]: https://github.com/hernancerm/bellhop/compare/0.2.0...HEAD
-[0.2.0]: https://github.com/hernancerm/bellhop/compare/0.1.0...0.2.0
-[0.1.0]: https://github.com/hernancerm/bellhop/releases/tag/0.1.0
+[Unreleased]: https://github.com/hernancerm/upkeep/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/hernancerm/upkeep/compare/0.1.0...0.2.0
+[0.1.0]: https://github.com/hernancerm/upkeep/releases/tag/0.1.0

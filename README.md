@@ -1,13 +1,13 @@
-# Bellhop
+# Upkeep
 
 Skills that keep a codebase tidy.
 
 | Skill | What it does | Edits files |
 |---|---|---|
-| `/rounds` | Finds the messiest areas and says which reviews to run there. | No |
+| `/hotspots` | Finds the messiest areas and says which reviews to run there. | No |
 | `/inspect` | Reviews a diff for bugs, duplication, design, dead code, and more. | No |
-| `/housekeeping` | Loops: rounds, inspect, fix, inspect again, until clean. Commits each fix. | Yes |
-| `/concierge` | Recommends the libraries, tools, and helpers that would pay off most. | No |
+| `/cleanup` | Loops: hotspots, inspect, fix, inspect again, until clean. Commits each fix. | Yes |
+| `/adopt` | Recommends the libraries, tools, and helpers that would pay off most. | No |
 
 ## Usage
 
@@ -19,15 +19,15 @@ any branch.
 
 Hands-on:
 
-1. `/rounds`: identifies the messiest areas in the codebase.
+1. `/hotspots`: identifies the messiest areas in the codebase.
     - The output of this skill contains recommended `/inspect` invocations.
 2. `/inspect`: reviews your current changes, or a specific area in the codebase.
     - You can then ask the agent to resolve the findings.
 
 Hands-off:
 
-1. `/housekeeping`: runs `/rounds`, and loops on `/inspect`-fix-commit.
-    - This is the automated way to run `/rounds` and `/inspect`.
+1. `/cleanup`: runs `/hotspots`, and loops on `/inspect`-fix-commit.
+    - This is the automated way to run `/hotspots` and `/inspect`.
 
 All three skills take the same optional arguments:
 
@@ -41,10 +41,10 @@ All three skills take the same optional arguments:
 |---|---|
 | Review your current changes | `/inspect` |
 | Review with plan docs and a note | `/inspect -- See .temp/plan. Increment 1 only` |
-| Find the messy parts of your branch | `/rounds main...` |
+| Find the messy parts of your branch | `/hotspots main...` |
 | Review another branch, no checkout | `/inspect main...feature-x` |
 | Only some review types on `src/api.ts` | `/inspect types=bugs,sense src/api.ts` |
-| Clean up only your branch | `/housekeeping main...` |
+| Clean up only your branch | `/cleanup main...` |
 
 ### Add what's missing
 
@@ -53,7 +53,7 @@ helper. Adding one is a bigger decision than a fix, since it brings setup, upkee
 it gets its own skill. It pays off most once the code shows the same problem in a few places,
 while the codebase is still young enough that adopting things is cheap.
 
-`/concierge`: recommends libraries, tools, and helpers that would replace hand-written code or fill
+`/adopt`: recommends libraries, tools, and helpers that would replace hand-written code or fill
 a gap, each backed by `file:line` spots. It takes no arguments.
 
 ## Install
@@ -61,8 +61,8 @@ a gap, each backed by `file:line` spots. It takes no arguments.
 ### Claude Code
 
 ```
-/plugin marketplace add hernancerm/bellhop
-/plugin install bellhop@bellhop
+/plugin marketplace add hernancerm/upkeep
+/plugin install upkeep@upkeep
 ```
 
 ### Other

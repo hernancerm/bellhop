@@ -1,5 +1,5 @@
 ---
-name: rounds
+name: hotspots
 description: >-
   Finds the dirtiest areas of the codebase, or of a branch, range, or set of paths (where a review
   would likely find many problems), and says which review types to run there, without reviewing or
@@ -8,7 +8,7 @@ description: >-
 argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [-- <notes>]"
 ---
 
-# Rounds
+# Hotspots
 
 Point at the few areas where design, architecture, or reuse is drifting, so the inspect skill
 can target them. This is a gut-feeling pass to keep the code from turning into spaghetti with
@@ -21,7 +21,7 @@ prompts: no pipes, `&&`, redirects, or `$(...)`.
 
 ## Arguments
 
-All optional, the same for the rounds, inspect, and housekeeping skills:
+All optional, the same for the hotspots, inspect, and cleanup skills:
 
 - `types=` and a comma-separated list of review types (e.g. `types=simplify` or
   `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`, `sense`. An
