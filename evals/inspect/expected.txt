@@ -1,0 +1,19 @@
+# One extended regex per line, matched against each line of the report.
+# A line starting with ! must match no report line (a false positive).
+# Line numbers allow the def line, since findings may point at either.
+
+# Division by zero on an empty list.
+\[bugs\].*reports\.py:[67]
+# Duplicates shop.dates.format_iso_date.
+\[reuse\].*reports\.py:1[01]
+# if/else that returns a bool.
+\[simplify\].*reports\.py:1[4-8]
+# Nothing calls _legacy_rounding.
+\[dead\].*reports\.py:2[12]
+# Three tests that differ only in inputs.
+\[tests\].*test_reports\.py
+# HTTP call with no timeout.
+\[sense\].*reports\.py:2[5-7]
+
+# The orders.py change follows the repo's own style. A finding there marked "(guess)" is fine.
+!\[[a-z]+\][^a-z(]*shop/orders\.py:

@@ -70,3 +70,8 @@ while the codebase is still young enough that adopting things is cheap.
 
 `/adopt`: recommends libraries, tools, and helpers that would replace hand-written code or fill
 a gap, each backed by `file:line` spots. It takes no arguments.
+
+## Evals
+
+`evals/run.sh inspect` runs `/inspect` on a small repo with planted problems and checks that it
+finds each one, without false alarms. It calls Claude, so it costs tokens.
