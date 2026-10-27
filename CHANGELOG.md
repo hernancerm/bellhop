@@ -7,6 +7,10 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Removed
+
+- The Claude Code plugin. Install with `npx skills add hernancerm/upkeep` instead.
+
 ## [0.3.0] - 2026-10-25
 
 ### Changed

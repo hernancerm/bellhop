@@ -9,6 +9,21 @@ Skills that keep a codebase tidy.
 | `/cleanup` | Loops: hotspots, inspect, fix, inspect again, until clean. Commits each fix. | Yes |
 | `/adopt` | Recommends the libraries, tools, and helpers that would pay off most. | No |
 
+## Quickstart
+
+```
+# List all available skills
+npx skills add hernancerm/upkeep --list
+
+# Install a specific skill
+npx skills add hernancerm/upkeep --skill inspect
+
+# Install all skills
+npx skills add hernancerm/upkeep
+```
+
+`/cleanup` runs `/hotspots` and `/inspect`, so install those with it.
+
 ## Usage
 
 ### Fix what's there
@@ -55,16 +70,3 @@ while the codebase is still young enough that adopting things is cheap.
 
 `/adopt`: recommends libraries, tools, and helpers that would replace hand-written code or fill
 a gap, each backed by `file:line` spots. It takes no arguments.
-
-## Install
-
-### Claude Code
-
-```
-/plugin marketplace add hernancerm/upkeep
-/plugin install upkeep@upkeep
-```
-
-### Other
-
-Symlink.
