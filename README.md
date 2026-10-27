@@ -11,7 +11,7 @@ Skills that keep a codebase tidy.
 
 ## Quickstart
 
-```
+```bash
 # List all available skills
 npx skills add hernancerm/upkeep --list
 
