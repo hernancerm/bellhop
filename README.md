@@ -6,7 +6,7 @@ Skills that keep a codebase tidy.
 |---|---|---|
 | `/hotspots` | Finds the messiest areas and says which reviews to run there. | No |
 | `/inspect` | Reviews a diff for bugs, duplication, design, dead code, and more. | No |
-| `/cleanup` | Loops: hotspots, inspect, fix, inspect again, until clean. Commits each fix. | Yes |
+| `/cleanup` | Loops: `/hotspots`, `/inspect`, fix, inspect again, until clean. Commits each fix. | Yes |
 | `/adopt` | Recommends the libraries, tools, and helpers that would pay off most. | No |
 
 ## Quickstart
@@ -21,8 +21,6 @@ npx skills add hernancerm/upkeep --skill inspect
 # Install all skills
 npx skills add hernancerm/upkeep
 ```
-
-`/cleanup` runs `/hotspots` and `/inspect`, so install those with it.
 
 ## Usage
 
