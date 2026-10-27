@@ -40,6 +40,8 @@ the hotspots skill suggests for it.
 
 ## Before you start
 
+- The hotspots or inspect skill is not installed: say to install them with
+  `npx skills add hernancerm/upkeep`, and stop.
 - The working tree has uncommitted changes: say so and stop, so the user's own work does not end
   up in your commits.
 - The range ends on a branch that is not checked out (e.g. `main...feature-x`): say to check it
@@ -59,9 +61,10 @@ say so and stop.
 
 1. Run the inspect skill with the area's types, the range if any, and the area's paths. Print its
    findings in full, so the user sees what each round fixes, then go on without waiting for them.
-2. Fix every finding except the ones marked as a guess, one at a time. Follow the repo's rules
-   file and keep behavior the same unless the finding is a bug. Skip a fix that would break
-   something or that you are not sure about, and say why. After each fix:
+2. Fix every finding except the ones marked as a guess and the `sense` ones (they add behavior,
+   which is the user's call), one at a time. Follow the repo's rules file and keep behavior the
+   same unless the finding is a bug. Skip a fix that would break something or that you are not
+   sure about, and say why. After each fix:
    1. Run the repo's tests or linters for the files you touched, if it has them. Fix what you
       broke.
    2. Commit it on the current branch: `git add <paths>`, then `git commit`, in the repo's
@@ -78,6 +81,6 @@ For each area:
 
 - The paths, and whether it ended clean.
 - Your commits, one line each: short hash and subject.
-- What you left: guesses, skipped fixes, and findings still open after 2 rounds, with
-  `file:line` and why.
+- What you left: guesses, `sense` findings, skipped fixes, and findings still open after 2
+  rounds, with `file:line` and why.
 - The tests or linters you ran, and the result.

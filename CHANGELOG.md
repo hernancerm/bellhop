@@ -7,6 +7,11 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- `/cleanup` stops and says how to install `/hotspots` and `/inspect` when they are missing.
+- `/cleanup` leaves `sense` findings for the user instead of fixing them, since they add behavior.
+
 ## [0.4.0] - 2026-10-27
 
 ### Removed

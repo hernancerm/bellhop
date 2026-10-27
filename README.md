@@ -41,6 +41,8 @@ Hands-off:
 
 1. `/cleanup`: runs `/hotspots`, and loops on `/inspect`-fix-commit.
     - This is the automated way to run `/hotspots` and `/inspect`.
+    - Needs `/hotspots` and `/inspect` installed too.
+    - Leaves `sense` findings for you, since they add behavior.
 
 All three skills take the same optional arguments:
 
