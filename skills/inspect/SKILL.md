@@ -98,7 +98,7 @@ code harder to follow (e.g. clever one-liners).
 
 ### dead
 
-Code in the given output that nothing uses or reaches: unused functions, classes, variables,
+Code under review that nothing uses or reaches: unused functions, classes, variables,
 imports, parameters, and config, branches that can never run, and commented-out code. Before you
 call it dead, search the whole repo for what a symbol search misses: config keys, strings, dynamic
 lookups, other languages or tools, and public API that code outside the repo may use. Unsure: mark
