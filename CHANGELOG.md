@@ -7,6 +7,13 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-10-28
+
+### Added
+
+- `perf` review type: local speedups that keep behavior the same (e.g. O(n²) to O(n), N+1
+  queries), with no redesigns.
+
 ### Changed
 
 - `/cleanup` stops and says how to install `/hotspots` and `/inspect` when they are missing.
@@ -58,7 +65,8 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Claude Code plugin marketplace install.
 - MIT license.
 
-[Unreleased]: https://github.com/hernancerm/upkeep/compare/0.4.0...HEAD
+[Unreleased]: https://github.com/hernancerm/upkeep/compare/0.5.0...HEAD
+[0.5.0]: https://github.com/hernancerm/upkeep/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/hernancerm/upkeep/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/hernancerm/upkeep/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/hernancerm/upkeep/compare/0.1.0...0.2.0
