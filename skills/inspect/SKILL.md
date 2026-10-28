@@ -2,10 +2,11 @@
 name: inspect
 description: >-
   Reviews the user's code changes (or given files) for bugs, duplication, design problems, ways to
-  simplify, dead code, bloated tests, and what a change of that kind usually needs but is missing,
-  and gives feedback without editing files. Use when the user asks to review, simplify, shorten, or
-  clean up their diff, changes, branch, or work before committing or opening a PR.
-argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [-- <notes>]"
+  simplify, easy performance wins, dead code, bloated tests, and what a change of that kind usually
+  needs but is missing, and gives feedback without editing files. Use when the user asks to review,
+  simplify, shorten, or clean up their diff, changes, branch, or work before committing or opening
+  a PR.
+argument-hint: "[types=bugs,reuse,design,simplify,perf,dead,tests,sense] [<range>] [<paths>...] [-- <notes>]"
 ---
 
 # Inspect
@@ -18,8 +19,8 @@ their files: describe each fix, and show code only when it is a few lines.
 All optional, the same for the hotspots, inspect, and cleanup skills:
 
 - `types=` and a comma-separated list of review types (e.g. `types=simplify` or
-  `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`, `sense`. An
-  unknown type: ask instead of guessing.
+  `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `perf`, `dead`, `tests`,
+  `sense`. An unknown type: ask instead of guessing.
 - A git range (e.g. `main...`, `HEAD~5..`, `main...feature-x`).
 - Paths (e.g. `src/api src/db/models.py`): files, directories, or a mix. Drop a leading `@` (a
   Claude Code file mention).
@@ -96,6 +97,17 @@ code harder to follow (e.g. clever one-liners).
   are not sure it does, say what could differ.
 - Skip changes that only swap one style for another of equal length.
 
+### perf
+
+Local changes that make the code faster and keep it doing exactly the same thing, e.g.:
+
+- A lookup in a list inside a loop (O(n²)) that a set or dict built once makes O(n).
+- A query, request, or file read inside a loop that one batched call can replace (N+1).
+- Work that gives the same result on every pass of a loop: move it out.
+
+Keep each fix inside a function or two: no redesigns, new layers, or caches. Skip wins that only
+matter at sizes the code never sees, and micro-optimizations that make the code harder to read.
+
 ### dead
 
 Code under review that nothing uses or reaches: unused functions, classes, variables,
@@ -139,8 +151,8 @@ purpose (e.g. a comment or its rules file says so).
   understand, then by lines saved. Rank `dead` and `tests` findings by lines saved.
 - For each: the type in brackets (e.g. `[bugs]`), `file:line`, and the problem in one sentence.
   Then, for bugs, a concrete input or state that triggers it; for design, the change that would
-  hurt; for simplify, why the result is simpler; for dead, what you searched to show nothing
-  uses it; for tests, what value is kept and about how many lines go; for sense, what goes wrong
-  without it.
+  hurt; for simplify, why the result is simpler; for perf, the cost before and after (e.g. O(n²)
+  to O(n)) and how big n gets; for dead, what you searched to show nothing uses it; for tests,
+  what value is kept and about how many lines go; for sense, what goes wrong without it.
 - Mark a finding as a guess when you could not confirm it from the code.
 - No findings: say so plainly. Do not invent issues to fill the report.

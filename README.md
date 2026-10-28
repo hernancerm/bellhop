@@ -46,7 +46,7 @@ Hands-off:
 
 All three skills take the same optional arguments:
 
-1. `[types=…]`: bugs, reuse, design, simplify, dead, tests, sense
+1. `[types=…]`: bugs, reuse, design, simplify, perf, dead, tests, sense
 2. `[<range>]`: a git range (e.g., `main...`, `main...feature-x`)
 3. `[<paths>…]`: file or dir paths to review, optionally prefixed with `@`
 4. `[-- <notes>]`: free-text notes about scope or expected behavior, last. Everything after `--`

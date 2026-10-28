@@ -5,7 +5,7 @@ description: >-
   would likely find many problems), and says which review types to run there, without reviewing or
   editing anything. Use when the user asks where the code is messiest, where to focus a review, or
   what is turning into spaghetti.
-argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [-- <notes>]"
+argument-hint: "[types=bugs,reuse,design,simplify,perf,dead,tests,sense] [<range>] [<paths>...] [-- <notes>]"
 ---
 
 # Hotspots
@@ -24,8 +24,8 @@ prompts: no pipes, `&&`, redirects, or `$(...)`.
 All optional, the same for the hotspots, inspect, and cleanup skills:
 
 - `types=` and a comma-separated list of review types (e.g. `types=simplify` or
-  `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`, `sense`. An
-  unknown type: ask instead of guessing.
+  `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `perf`, `dead`, `tests`,
+  `sense`. An unknown type: ask instead of guessing.
 - A git range (e.g. `main...`, `HEAD~5..`, `main...feature-x`).
 - Paths (e.g. `src/api src/db/models.py`): files, directories, or a mix. Drop a leading `@` (a
   Claude Code file mention).

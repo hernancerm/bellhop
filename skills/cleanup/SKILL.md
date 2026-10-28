@@ -5,7 +5,7 @@ description: >-
   with the hotspots skill, reviews each with the inspect skill, fixes the findings, and reviews again
   until clean. Edits files and commits. Use when the user asks to clean up, tidy, or do housekeeping
   on the codebase or an area of it.
-argument-hint: "[types=bugs,reuse,design,simplify,dead,tests,sense] [<range>] [<paths>...] [-- <notes>]"
+argument-hint: "[types=bugs,reuse,design,simplify,perf,dead,tests,sense] [<range>] [<paths>...] [-- <notes>]"
 ---
 
 # Cleanup
@@ -23,8 +23,8 @@ Prefer plain commands, one at a time, to avoid permission prompts: no pipes, `&&
 All optional, the same for the hotspots, inspect, and cleanup skills:
 
 - `types=` and a comma-separated list of review types (e.g. `types=simplify` or
-  `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `dead`, `tests`, `sense`. An
-  unknown type: ask instead of guessing.
+  `types=bugs,reuse`), from `bugs`, `reuse`, `design`, `simplify`, `perf`, `dead`, `tests`,
+  `sense`. An unknown type: ask instead of guessing.
 - A git range (e.g. `main...`, `HEAD~5..`, `main...feature-x`).
 - Paths (e.g. `src/api src/db/models.py`): files, directories, or a mix. Drop a leading `@` (a
   Claude Code file mention).
